@@ -18,7 +18,7 @@ body { background-color: paleturquoise }
       textarea, input {
         display: block;
         width: 100%;
-        background-color: paleturquoise;
+        background-color: white;
       }
       input {
         height: 36px;
