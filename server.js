@@ -28,8 +28,6 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scrapedNewsDB"
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
-// mongoose.connect("mongodb://localhost/scrapedNewsDB");
-
 app.get("/articles", function (req, res) {
 
     axios.get("http://www.bbc.com/news/world/us_and_canada").then(function (response) {
@@ -58,11 +56,11 @@ app.get("/articles", function (req, res) {
 
         db.Article.find({})
     .then(function(dbArticle) {
-      // If we were able to successfully find Articles, send them back to the client
+
       res.json(dbArticle);
     })
     .catch(function(err) {
-      // If an error occurred, send it to the client
+
       res.json(err);
     });
 
@@ -71,14 +69,14 @@ app.get("/articles", function (req, res) {
 });
 
 app.get("/articles/:id", function (req, res) {
-    // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
+
     db.Article.findOne({ _id: req.params.id })
        .then(function(dbArticle) {
            res.json(dbArticle);
        })
 });
 
-// Route for saving/updating an Article's associated Note
+
 app.post("/articles/:id", function (req, res) {
     
     db.Article.findOne({_id: req.params.id})
@@ -100,7 +98,7 @@ app.get("/delete/:id/:note", function (req, res) {
     })
 })
 
-// Start the server
+
 app.listen(PORT, function () {
     console.log("App running on port " + PORT + "!");
 });
